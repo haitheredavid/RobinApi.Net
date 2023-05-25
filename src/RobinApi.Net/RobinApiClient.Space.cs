@@ -421,6 +421,11 @@ namespace RobinApi.Net
       }
       throw new RobinApiException(JsonHelper.Deserialize<ApiWrapper<object>>(jsonResult).Meta);
     }
+
+    public async Task<Zone[]> GetSpaceZone(int id, KeyValuePair<string, string>[] query = null)
+    {
+      return await Get<Zone[]>($"spaces/{id}/zones", query).ConfigureAwait(false);
+    }
   }
 
 }
