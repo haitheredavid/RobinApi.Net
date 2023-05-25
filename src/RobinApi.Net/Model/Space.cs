@@ -56,5 +56,8 @@ namespace RobinApi.Net.Model
 
         [DataMember(Name = "calendar", EmitDefaultValue = false)]
         public Calendar Calendar { get; set; }
+        
+        [DataMember(Name = "behaviors", EmitDefaultValue = false)]
+        public string[] Behaviors { get; set; }
     }
 }
