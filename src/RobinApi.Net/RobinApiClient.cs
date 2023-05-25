@@ -62,7 +62,7 @@ namespace RobinApi.Net
         }
 
 
-        public async Task<T> Get<T>(string end, KeyValuePair<string, string>[] query = null)
+        async Task<T> Get<T>(string end, KeyValuePair<string, string>[] query = null)
         {
             var response = await _httpClient.GetAsync(RobinQuery.Create(end, query)).ConfigureAwait(false);
             var jsonResult = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
