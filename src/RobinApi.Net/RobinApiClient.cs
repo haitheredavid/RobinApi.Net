@@ -73,7 +73,19 @@ namespace RobinApi.Net
             }
       
             throw new RobinApiException(JsonHelper.Deserialize<ApiWrapper<object>>(jsonResult).Meta);
+        }
 
+        public async Task<ApiWrapper<T>> GetResponse<T>(string end, KeyValuePair<string, string>[] query = null)
+        {
+            var response = await _httpClient.GetAsync(RobinQuery.Create(end, query)).ConfigureAwait(false);
+            var jsonResult = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+      
+            if(response.IsSuccessStatusCode)
+            {
+                return JsonHelper.Deserialize<ApiWrapper<T>>(jsonResult);
+            }
+      
+            throw new RobinApiException(JsonHelper.Deserialize<ApiWrapper<object>>(jsonResult).Meta);
         }
     }
 
